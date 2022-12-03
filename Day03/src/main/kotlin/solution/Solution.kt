@@ -54,12 +54,40 @@ fun main() {
                 26 + priorities.indexOf(
                     wrongItem.lowercase().toCharArray().first()
                 )
-            else 0 + priorities.indexOf(wrongItem)
+            else priorities.indexOf(wrongItem)
 
         sumOfPriorities += priorityOfItem
     }
 
     // print result of part 1
     println(sumOfPriorities)
+
+    // part 2
+    var priorityOfBadges = 0
+
+    val iterator = input.iterator()
+    while (iterator.hasNext()) {
+        val elf1 = iterator.next()
+        val elf2 = iterator.next()
+        val elf3 = iterator.next()
+
+        val elf1SortedSet = elf1.toSortedSet()
+        val elf2SortedSet = elf2.toSortedSet()
+        val elf3SortedSet = elf3.toSortedSet()
+
+        val badge = elf1SortedSet.intersect(elf2SortedSet).intersect(elf3SortedSet).toList().first()
+        val isUpperCase = badge.isUpperCase()
+        val priorityOfItem: Int =
+            if (isUpperCase)
+                26 + priorities.indexOf(
+                    badge.lowercase().toCharArray().first()
+                )
+            else priorities.indexOf(badge)
+
+        priorityOfBadges += priorityOfItem
+    }
+
+    // print result of part 2
+    println(priorityOfBadges)
 }
 
